@@ -1,7 +1,7 @@
 version: '3'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     environment:
       discovery.type: single-node
     ports:
@@ -10,14 +10,17 @@ services:
 
   fluentd:
     build: ./fluentd
+    depends_on:
+      - elasticsearch
     volumes:
       - ./fluentd/conf:/fluentd/etc
+      - /Users/e658681/src/gtm/data/stage2:/fluentd/demo_logs
       - ./logs:/logs
     ports:
       - 8080:8080
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.4.2
+    image: docker.elastic.co/kibana/kibana:7.5.2
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
