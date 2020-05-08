@@ -14,7 +14,7 @@ services:
       - elasticsearch
     volumes:
       - ./fluentd/conf:/fluentd/etc
-      - /Users/e658681/src/gtm/data/stage2:/fluentd/demo_logs
+      - /Users/e658681/src/gtm/data/stage3:/fluentd/demo_logs
       - ./logs:/logs
     ports:
       - 8080:8080
