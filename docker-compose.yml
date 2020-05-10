@@ -10,14 +10,16 @@ services:
 
   fluentd:
     build: ./fluentd
+    # environment:
+      # - FLUENTD_CONF=fluentd.conf
     depends_on:
       - elasticsearch
     volumes:
       - ./fluentd/conf:/fluentd/etc
-      - /Users/e658681/src/gtm/data/stage3:/fluentd/demo_logs
+      - /Users/e658681/src/gtm/data/stage2:/fluentd/demo_logs
       - ./logs:/logs
-    ports:
-      - 8080:8080
+    # ports:
+    #   - 8080:8080
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.5.2
